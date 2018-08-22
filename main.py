@@ -61,6 +61,14 @@ class PasswordGenerator:
     def getPaddingDigitsAfter(self):
         return self.paddingDigitsAfter
 
+    # Set the symbols to use for separators
+    def setSeparatorSymbols(self, symbols):
+        self.symbols = symbols
+
+    # Get the symbols to use for sepatators
+    def getSeparatorSymbols(self):
+        return self.symbols
+
 
 # PASSWORD GENERATOR ###########################################################
     def generatePassword(self):
@@ -113,5 +121,6 @@ passwd.setMinimumWordLength(4)
 passwd.setMaximumWordLength(10)
 passwd.setPaddingDigitsBefore(2)
 passwd.setPaddingDigitsAfter(2)
+passwd.setSeparatorSymbols(",.:-_")
 print(passwd.generatePassword())
 passwd.cleanup()
