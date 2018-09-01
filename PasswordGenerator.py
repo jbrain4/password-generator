@@ -15,6 +15,7 @@ class PasswordGenerator:
         self.paddingDigitsAfter = 2 # Define the default number of padding digits to insert after the main part of the password
         self.paddingSymbolsBefore = 0 # Define the default number of padding symbols to insert before the main part of the password
         self.paddingSymbolsAfter = 0 # Define the default number of padding symbols to insert after the main part of the password
+        self.paddingToLength = 0 # Define the default length to pad the password to
 
         # Save the word dictionary as an array
         self.words = self.dictionary.readlines()
@@ -86,6 +87,14 @@ class PasswordGenerator:
     def getPaddingSymbolsAfter(self, amount):
         return self.paddingSymbolsAfter
 
+    # Set the number of characters that you want to pad to
+    def setPaddingToLength(self, length):
+        self.paddingToLength = length
+
+    # Get the number of characters that you want to pad to
+    def getPaddingToLength(self):
+        return self.paddingToLength
+
 
 # PASSWORD GENERATOR ###########################################################
     def generatePassword(self, totalPasswords = 1):
@@ -152,6 +161,10 @@ class PasswordGenerator:
             while endSymbolPaddingIndex < self.paddingSymbolsAfter:
                 password += paddingSymbols
                 endSymbolPaddingIndex += 1
+
+            # Add padding symbols to make the password a specific length
+            while len(password) < self.paddingToLength:
+                password += paddingSymbols
 
             # Increment the password counter
             createdPasswords += 1
